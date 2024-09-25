@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schritte pro Woche</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .submit-btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Schritte pro Woche - Teilnehmerübersicht</h1>
+
+    <table id="schritteTabelle">
+        <thead>
+            <tr>
+                <th>Teilnehmer</th>
+                <th>Schritte - Montag</th>
+                <th>Schritte - Dienstag</th>
+                <th>Schritte - Mittwoch</th>
+                <th>Schritte - Donnerstag</th>
+                <th>Schritte - Freitag</th>
+                <th>Schritte - Samstag</th>
+                <th>Schritte - Sonntag</th>
+                <th>Wochensumme</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Zeilen für die 8 Teilnehmer -->
+            <tr>
+                <td>Teilnehmer 1</td>
+                <td><input type="number" class="steps" data-participant="1" data-day="monday"></td>
+                <td><input type="number" class="steps" data-participant="1" data-day="tuesday"></td>
+                <td><input type="number" class="steps" data-participant="1" data-day="wednesday"></td>
+                <td><input type="number" class="steps" data-participant="1" data-day="thursday"></td>
+                <td><input type="number" class="steps" data-participant="1" data-day="friday"></td>
+                <td><input type="number" class="steps" data-participant="1" data-day="saturday"></td>
+                <td><input type="number" class="steps" data-participant="1" data-day="sunday"></td>
+                <td><span id="sum-1">0</span></td>
+            </tr>
+            <tr>
+                <td>Teilnehmer 2</td>
+                <td><input type="number" class="steps" data-participant="2" data-day="monday"></td>
+                <td><input type="number" class="steps" data-participant="2" data-day="tuesday"></td>
+                <td><input type="number" class="steps" data-participant="2" data-day="wednesday"></td>
+                <td><input type="number" class="steps" data-participant="2" data-day="thursday"></td>
+                <td><input type="number" class="steps" data-participant="2" data-day="friday"></td>
+                <td><input type="number" class="steps" data-participant="2" data-day="saturday"></td>
+                <td><input type="number" class="steps" data-participant="2" data-day="sunday"></td>
+                <td><span id="sum-2">0</span></td>
+            </tr>
+            <!-- Weitere Teilnehmer können hier hinzugefügt werden (Teilnehmer 3 bis 8) -->
+        </tbody>
+    </table>
+
+    <button class="submit-btn" onclick="calculateSum()">Berechne Wochensummen</button>
+
+    <script>
+        // Funktion zur Berechnung der Wochensumme
+        function calculateSum() {
+            for (let i = 1; i <= 8; i++) {  // 8 Teilnehmer
+                let sum = 0;
+                document.querySelectorAll(`input[data-participant="${i}"]`).forEach(input => {
+                    let steps = parseInt(input.value) || 0;
+                    sum += steps;
+                });
+                document.getElementById(`sum-${i}`).innerText = sum;
+            }
+        }
+    </script>
+
+</body>
+</html>
